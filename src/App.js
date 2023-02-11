@@ -105,7 +105,7 @@ export default function Game() {
   //ultimo movimiento actual del historial
   const currentSquares = history[currentMove];
 
-  
+
   //handlePlay actualiza el ultimo movimiento
   function handlePlay(nextSquares) {
     //nextHistory mantiene el historial hasta el nuevo movimiento
@@ -115,19 +115,32 @@ export default function Game() {
     setCurrentMove(nextHistory.length - 1);
   }
 
+  
+  //jumpTo muestra el movimiento anterior
   function jumpTo(nextMove) {
     setCurrentMove(nextMove);
   }
-
+  //moves se convierte en una matriz de elementos estos son los botones
   const moves = history.map((squares, move) => {
+    //se crea la descripción
     let description;
+    //si el movimiento es un numero de mov mayor a 0
     if (move > 0) {
+      //describe a que numero de movimiento te envia
       description = 'Go to move #' + move;
+    //sino
     } else {
+      //quiere decir que envia al inicio de casillas vacias 
       description = 'Go to game start';
     }
+
+    //regresa por cada movimiento
     return (
+      //una lista que contiene un botón con
+        //una key = propiedad clave
       <li key={move}>
+        {/*Al hacer clic en el botón llama a la función JumpTo
+            y pone el resultado de la descripción*/}
         <button onClick={() => jumpTo(move)}>{description}</button>
       </li>
     );
