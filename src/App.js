@@ -1,9 +1,16 @@
+
 import { useState } from 'react';
 
+//Se crea la función que 
+  //Usa props para pasar el valor que recibe 
+  //onSquareClick para saber que se hizo clic
 function Square({ value, onSquareClick }) {
+  //regresa un botón o casilla del juego
   return (
-    <button className="square" onClick={onSquareClick}>
-      {value}
+    //El botón recibe el valor y la variable va dentro de llaves
+      //se asigna el oyente onClick
+   <button className="square" onClick={onSquareClick}>
+      {value} 
     </button>
   );
 }
