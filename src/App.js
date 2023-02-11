@@ -38,21 +38,30 @@ function Board({ xIsNext, squares, onPlay }) {
       //agrega un O en la casilla
       nextSquares[i] = 'O';
     }
-    //evalua con onPlay
+    //actualiza con onPlay
     onPlay(nextSquares);
   }
 
+//ESTADO
+  //guarda si ha ganado
   const winner = calculateWinner(squares);
+
+  //se declara una variable status
   let status;
+  //si hay un ganador
   if (winner) {
+    //Dice quien es el que gano 
     status = 'Winner: ' + winner;
+  //sino
   } else {
+    //devuelve si el siguiente turno de jugador es X o O
     status = 'Next player: ' + (xIsNext ? 'X' : 'O');
   }
 
   return (
     //Se crean las 9 casillas llamando a la función Square
     <>
+      {/*Para mostrar el texto del estado*/}
       <div className="status">{status}</div>
 
       {/*estan en un div dado que son 3 filas de 3 columnas*/}
@@ -120,7 +129,10 @@ export default function Game() {
   );
 }
 
+//funcion para saber el ganador y que no haya más turnos
+  //no es especifica de React
 function calculateWinner(squares) {
+  //toma la matriz
   const lines = [
     [0, 1, 2],
     [3, 4, 5],
@@ -133,7 +145,9 @@ function calculateWinner(squares) {
   ];
   for (let i = 0; i < lines.length; i++) {
     const [a, b, c] = lines[i];
+    //evalua 
     if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
+      //devuelve x o O
       return squares[a];
     }
   }
