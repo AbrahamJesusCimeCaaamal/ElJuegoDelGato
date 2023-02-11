@@ -42,8 +42,8 @@ function Board({ xIsNext, squares, onPlay }) {
     onPlay(nextSquares);
   }
 
-//ESTADO
-  //guarda si ha ganado
+  //ESTADO
+  //winner guarda si ha ganado
   const winner = calculateWinner(squares);
 
   //se declara una variable status
@@ -87,10 +87,22 @@ function Board({ xIsNext, squares, onPlay }) {
   );
 }
 
+/*componente Game para mostrar una lista de movimientos realizados.
+lo usa como componente de nivel superior al Board*/
 export default function Game() {
+  
+  /*se almacenan las matrices anteriores en la nueva matriz history
+  rastreando el historial de movimientos*/
   const [history, setHistory] = useState([Array(9).fill(null)]);
+
+  //currentMove rastrea el paso en el que va el usuario y por defecto es 0
   const [currentMove, setCurrentMove] = useState(0);
+
+  //xIsNext rastrea que jugador es el siguiente
+   //% 2 === 0 inidca que es par
   const xIsNext = currentMove % 2 === 0;
+
+  //ultimo movimiento actual del historial
   const currentSquares = history[currentMove];
 
   function handlePlay(nextSquares) {
@@ -117,11 +129,17 @@ export default function Game() {
     );
   });
 
+  //regresa 
   return (
+
     <div className="game">
+      {/*div para el Board*/}
       <div className="game-board">
+        {/*representa el componente Board*/}
         <Board xIsNext={xIsNext} squares={currentSquares} onPlay={handlePlay} />
       </div>
+
+      {/*representa info delos movimientos*/}
       <div className="game-info">
         <ol>{moves}</ol>
       </div>
