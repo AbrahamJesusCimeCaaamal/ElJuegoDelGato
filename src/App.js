@@ -90,7 +90,7 @@ function Board({ xIsNext, squares, onPlay }) {
 /*componente Game para mostrar una lista de movimientos realizados.
 lo usa como componente de nivel superior al Board*/
 export default function Game() {
-  
+
   /*se almacenan las matrices anteriores en la nueva matriz history
   rastreando el historial de movimientos*/
   const [history, setHistory] = useState([Array(9).fill(null)]);
@@ -105,8 +105,12 @@ export default function Game() {
   //ultimo movimiento actual del historial
   const currentSquares = history[currentMove];
 
+  
+  //handlePlay actualiza el ultimo movimiento
   function handlePlay(nextSquares) {
+    //nextHistory mantiene el historial hasta el nuevo movimiento
     const nextHistory = [...history.slice(0, currentMove + 1), nextSquares];
+    //actualización del numero de movimiento
     setHistory(nextHistory);
     setCurrentMove(nextHistory.length - 1);
   }
