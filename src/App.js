@@ -1,4 +1,5 @@
-
+/*Se importa la función de React llamada useState para 
+permitir al componente recordar cosas*/
 import { useState } from 'react';
 
 //Se crea la función que 
