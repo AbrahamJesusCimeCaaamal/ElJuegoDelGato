@@ -16,7 +16,9 @@ function Square({ value, onSquareClick }) {
   );
 }
 
+//Función Board que crea todas las casillas
 function Board({ xIsNext, squares, onPlay }) {
+
   function handleClick(i) {
     if (calculateWinner(squares) || squares[i]) {
       return;
@@ -39,9 +41,15 @@ function Board({ xIsNext, squares, onPlay }) {
   }
 
   return (
+    //Se crean las 9 casillas llamando a la función Square
     <>
       <div className="status">{status}</div>
+
+      {/*estan en un div dado que son 3 filas de 3 columnas*/}
       <div className="board-row">
+        {/*Cada casilla se asigna su numero propio
+            Crea onSquareClick para asignarle un numero
+            que le pasa a la función handleClick */}
         <Square value={squares[0]} onSquareClick={() => handleClick(0)} />
         <Square value={squares[1]} onSquareClick={() => handleClick(1)} />
         <Square value={squares[2]} onSquareClick={() => handleClick(2)} />
