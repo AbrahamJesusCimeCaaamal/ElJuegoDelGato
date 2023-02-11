@@ -19,16 +19,26 @@ function Square({ value, onSquareClick }) {
 //Función Board que crea todas las casillas
 function Board({ xIsNext, squares, onPlay }) {
 
+  //se crea la funcion handleClick que recibe el índice del cuadrado que debe actualizarse
   function handleClick(i) {
+    /*Condiciona sí un jugador a ganado con calculateWinner(squares) 
+    o si la casilla ya se selecciono con squares[i]*/
     if (calculateWinner(squares) || squares[i]) {
+      //regresa
       return;
     }
+    //se crea una copia del array con la función .slice()
     const nextSquares = squares.slice();
+    // si es el siguiente jugador
     if (xIsNext) {
+      //agrega una X en la casilla
       nextSquares[i] = 'X';
+      //sino
     } else {
+      //agrega un O en la casilla
       nextSquares[i] = 'O';
     }
+    //evalua con onPlay
     onPlay(nextSquares);
   }
 
